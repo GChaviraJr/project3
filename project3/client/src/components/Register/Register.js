@@ -23,24 +23,24 @@ class Register extends React.Component {
     this.setState({password: event.target.value})
   }
 
-  // onSubmitSignIn = () => {
-  //   fetch('http://localhost:3000/register', {
-  //     method: 'post',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify({
-  //       email: this.state.email,
-  //       password: this.state.password,
-  //       name: this.state.name
-  //     })
-  //   })
-  //     .then(response => response.json())
-  //     .then(user => {
-  //       if (user.id) {
-  //         this.props.loadUser(user)
-  //         this.props.onRouteChange('home');
-  //       }
-  //     })
-  // }
+  onSubmitSignIn = () => {
+    fetch('http://localhost:3000/register', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user.id) {
+          this.props.loadUser(user)
+          this.props.onRouteChange('home');
+        }
+      })
+  }
 
   render() {
     return (
