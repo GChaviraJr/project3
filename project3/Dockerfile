@@ -9,9 +9,9 @@ COPY . /project3
 
 # Install any needed packages specified in package.json file
 COPY package.json /Users/guadalupechavira/git/project3/project3
-RUN npm install
+RUN yarn
 COPY package.json /Users/guadalupechavira/git/project3/project3/client
-RUN npm install
+RUN yarn
 
 # Bundle app source
 COPY . /Users/guadalupechavira/git/project3/project3
@@ -20,7 +20,7 @@ COPY . /Users/guadalupechavira/git/project3/project3
 EXPOSE 80
 
 # Define environment variable
-ENV NAME World
+ENV NODE_VERSION $NODE_VERSION
 
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# Build arguments
+ARG NODE_VERSION=11.10.1
