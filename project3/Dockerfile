@@ -10,7 +10,7 @@ WORKDIR /Users/guadalupechavira/git/project3/project3/client
 COPY . /project3/project3
 
 # Install any needed packages specified in package.json file
-COPY package.json /Users/guadalupechavira/git/project3/project3
+COPY package.json /Users/guadalupechavira/git/project3/project3/
 USER node
 RUN yarn
 COPY package.json /Users/guadalupechavira/git/project3/project3/client
