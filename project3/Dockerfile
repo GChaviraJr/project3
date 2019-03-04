@@ -11,11 +11,9 @@ COPY . /project3/project3
 
 # Install any needed packages specified in package.json file
 COPY package.json /Users/guadalupechavira/git/project3/project3
-COPY yarn.lock /Users/guadalupechavira/git/project3/project3
 USER node
 RUN yarn
 COPY package.json /Users/guadalupechavira/git/project3/project3/client
-COPY yarn.lock /Users/guadalupechavira/git/project3/project3/client
 USER node
 RUN yarn
 

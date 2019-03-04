@@ -9,7 +9,7 @@ services:
     ports: 
       - "3000:3000"
     volumes:
-      - ./:/Users/guadalupechavira/git/project3/project3/client
+      - .:/Users/guadalupechavira/git/project3/project3
   redis: 
     image: "redis:5.0.3-stretch"
   mongo: 
