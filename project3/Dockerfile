@@ -29,4 +29,3 @@ ENV NODE_VERSION $NODE_VERSION
 # Build arguments
 ARG NODE_VERSION=11.10.1
 
-CMD [ "yarn", "start"]
