@@ -9,7 +9,7 @@ services:
     ports: 
       - "3000:3000"
     volumes:
-      - .:project3/project3/contain
+      - .:project3/data
   redis: 
     image: "redis:5.0.3-stretch"
   mongo: 
