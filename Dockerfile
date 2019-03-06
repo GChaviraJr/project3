@@ -7,8 +7,8 @@ RUN mkdir -p ~/project3/client/node_modules && chown -R node:node ~/project3/cli
 WORKDIR ~/project3/
 
 # Copy the current directory contents into the container
+RUN mkdir /project/data
 COPY . /project3
-RUN mkdir . /data
 
 # Install any needed packages specified in package.json file
 COPY package.json project3/
