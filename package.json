@@ -20,11 +20,11 @@
     "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
-    "client": "cd client && yarn run start",
+    "client": "cd client && yarn start",
     "seed": "node scripts/seedDB.js",
-    "install": "cd client && yarn install",
-    "build": "cd client && yarn run build",
-    "heroku-postbuild": "yarn run build"
+    "install": "cd client && yarn",
+    "build": "cd client && yarn build",
+    "heroku-postbuild": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
