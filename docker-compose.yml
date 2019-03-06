@@ -5,7 +5,7 @@ services:
     container_name: backend
     build: ./
     command: yarn start
-    working_dir: project3/project3/client
+    working_dir: ~/project3/client
     ports: 
       - "3000:3000"
     volumes:
