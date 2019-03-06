@@ -12,7 +12,6 @@ COPY . /project3
 
 # Install any needed packages specified in package.json file
 COPY package.json project3/
-USER node
 RUN yarn
 COPY package.json project3/client
 USER node
