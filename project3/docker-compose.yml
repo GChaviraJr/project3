@@ -5,11 +5,11 @@ services:
     container_name: backend
     build: ./
     command: yarn start
-    working_dir: /Users/guadalupechavira/git/project3/project3/client
+    working_dir: project3/project3/client
     ports: 
       - "3000:3000"
     volumes:
-      - .:/Users/guadalupechavira/git/project3/project3
+      - .:project3/project3/contain
   redis: 
     image: "redis:5.0.3-stretch"
   mongo: 
