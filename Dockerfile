@@ -14,7 +14,6 @@ COPY . /project3
 COPY package.json project3/
 RUN yarn
 COPY package.json project3/client
-USER node
 RUN yarn
 
 # Bundle app source
