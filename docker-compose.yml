@@ -3,13 +3,13 @@ version: '3.7'
 services:
   night-owl-api:
     container_name: backend
-    build: ./
+    build: .~/
     command: yarn start
     working_dir: ~/project3/client
     ports: 
       - "3000:3000"
     volumes:
-      - .:project3/data
+      - .:~/project3/data
   redis: 
     image: "redis:5.0.3-stretch"
   mongo: 
