@@ -5,7 +5,7 @@ FROM node:11.10.1-stretch
 RUN mkdir -p ~/project3/node_modules && chown -R node:node ~/project3
 RUN mkdir -p ~/project3/client/node_modules && chown -R node:node ~/project3/client
 RUN mkdir -p project3/data
-WORKDIR ~/project3/client
+WORKDIR /client
 
 # Copy the current directory contents into the container
 COPY . /project3
