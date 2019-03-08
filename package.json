@@ -17,14 +17,12 @@
     "tachyons": "^4.11.1"
   },
   "scripts": {
-    "start": "yarn run start:prod",
-    "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
-    "client": "cd client && yarn run start",
+    "start": "node server.js",
+    "client": "cd client && yarn start",
     "seed": "node scripts/seedDB.js",
     "install": "cd client && yarn",
-    "build": "cd client && yarn run build",
-    "heroku-postbuild": "yarn run build"
+    "build": "cd client && yarn build",
+    "heroku-postbuild": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"

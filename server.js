@@ -2,7 +2,7 @@ const express = require("express");
 
 const mongoose = require('mongoose')
 const app = express();
-// const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
@@ -44,6 +44,6 @@ app.get('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileG
 app.post('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileUpdate(req, res, db)})
 
 // Start the API server
-app.listen(3000, function() {
-  console.log(`🌎  ==> API Server now listening on PORT 3000!`);
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT 3001!`);
 });
