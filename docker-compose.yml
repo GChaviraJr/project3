@@ -4,7 +4,7 @@ services:
   night-owl-api:
     container_name: backend
     image: gchavirajr/night-owl
-    command: nodemon server.js
+    command: yarn start
     working_dir: /opt/project3
     ports: 
       - "3001:3001"
