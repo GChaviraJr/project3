@@ -2,10 +2,10 @@
 FROM node:11.10.1-stretch
 
 # Set the working directory
-RUN mkdir -p ~/project3/node_modules && chown -R node:node ~/project3
-RUN mkdir -p ~/project3/client/node_modules && chown -R node:node ~/project3/client
+RUN mkdir -p /project3/node_modules && chown -R node:node /project3
+RUN mkdir -p /project3/client/node_modules && chown -R node:node /project3/client
 RUN mkdir -p project3/data
-WORKDIR /client
+WORKDIR ~/project3/client 
 
 # Copy the current directory contents into the container
 COPY . /project3
