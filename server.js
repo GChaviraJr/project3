@@ -5,28 +5,15 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
-const cors = require('cors');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const auth = require('./controllers/authorization');
 
-const whitelist = ['http://localhost:3001']
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors(corsOptions))
 app.use(bodyParser.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
