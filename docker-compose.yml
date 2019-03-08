@@ -15,11 +15,11 @@ services:
   mongo: 
     image: "mongo:3.6.11-stretch"
 
-    night-owl:
-      container_name: frontend
-      image: gchavirajr/night-owl
-      command: yarn start
-      working_dir: /opt/project/client
-      ports:
-        - "3000:3000"
+  night-owl:
+    container_name: frontend
+    image: gchavirajr/night-owl
+    command: yarn start
+    working_dir: /opt/project/client
+    ports:
+      - "3000:3000"
 
