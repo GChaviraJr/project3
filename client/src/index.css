@@ -1,6 +1,6 @@
 body {
   background-color: #97E5F9;
-    background-image: url('images/oel5.png'), url('images/moon.PNG');
+    background-image: url('../src/images/oel5.PNG'), url('../src/images/moon.PNG');
     background-position: center 110px, center 50px;
     background-repeat: no-repeat;
     background-size: 550px, 785px;
