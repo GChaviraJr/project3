@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 const db = mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/");
 
 app.post('/signin', signin.signinAuthentication(db, bcrypt))
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
+app.post('/register', (req, res) => { register.handleRegister2(req, res, db, bcrypt) })
 app.get('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileGet(req, res, db)})
 app.post('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileUpdate(req, res, db)})
 
