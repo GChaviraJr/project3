@@ -1,10 +1,10 @@
 version: '3.7'
 
 services:
-  night-owl-api:
-    container_name: backend
+  nightowl:
+    container_name: app
     image: gchavirajr/night-owl
-    command: yarn start
+    command: yarn start:dev
     working_dir: /opt/project3
     ports: 
       - "3001:3001"
@@ -14,12 +14,3 @@ services:
     image: "redis:5.0.3-stretch"
   mongo: 
     image: "mongo:3.6.11-stretch"
-
-  night-owl:
-    container_name: frontend
-    image: gchavirajr/night-owl
-    command: yarn start
-    working_dir: /opt/project/client
-    ports:
-      - "3000:3000"
-

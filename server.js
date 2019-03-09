@@ -23,8 +23,7 @@ if (process.env.NODE_ENV === "production") {
 // app.use(routes);
 
 // Connect to the Mongo DB
-const db = mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/");
-
+const db = mongoose.connect(process.env.MONGODB_URI || "mongodb://mongo");
 
 app.post('/signin', signin.signinAuthentication(db, bcrypt))
 app.post('/register', (req, res) => { register.handleRegister2(req, res, db, bcrypt) })

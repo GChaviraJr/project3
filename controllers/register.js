@@ -18,7 +18,7 @@ const handleRegister = (req, res, db, bcrypt) => {
         email: loginEmail[0],
         name: name
       }).then(user => {
-        res.json(user[0]);
+        res.json("user[0]");
       }).catch(err => res.status(400).json('unable to register'))
     }).catch(err => res.status(400).json('unable to register'))
 }

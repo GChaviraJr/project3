@@ -2,7 +2,7 @@ const db = require("../models/");
 const jwt = require('jsonwebtoken');
 
 // You will want to update your host to the proper address in production
-const redisClient = require('redis').createClient(process.env.REDIS_URL);
+const redisClient = require('redis').createClient(process.env.REDIS_URL || 'redis://redis');
 
 const signToken = (username) => {
   const jwtPayload = { username };
@@ -26,7 +26,7 @@ const handleSignin = (bcrypt, req, res) => {
   if (!email || !password) {
     return Promise.reject('incorrect form submission');
   }
-  return db.Login.find({email, hash})
+  return db.Login.find({email})
     .then(data => {
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
@@ -47,7 +47,7 @@ const handleSignin2 = async (bcrypt, req, res) => {
   }
 
   try {
-    const login = await db.Login.findOne({ email, hash })
+    const login = await db.Login.findOne({ email})
     const isValid = bcrypt.compareSync(password, login.hash);
     const user = await db.Users.findOne({ email })
 
@@ -55,7 +55,7 @@ const handleSignin2 = async (bcrypt, req, res) => {
 
   }
 
-  return db.Login.find({email, hash})
+  return db.Login.find({email})
     .then(data => {
       if (isValid) {
         return db.Users.find({email})

@@ -2,6 +2,7 @@
   "name": "project3",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.18.3",
@@ -17,6 +18,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "start:dev": "nodemon server.js",
     "client": "cd client && yarn start",
     "postinstall": "cd client && yarn",
     "seed": "node scripts/seedDB.js",
@@ -32,5 +34,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
 }
