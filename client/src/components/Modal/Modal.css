@@ -1,4 +1,5 @@
 #modal-root {
+    background-color: grey;
     position: relative;
-    z-index: 999;
+    z-index: 50;
   }
