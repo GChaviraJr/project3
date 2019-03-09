@@ -1,8 +1,9 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Courier New", Courier, monospace;
-  background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100%); /* w3c */
+  background-color: #97E5F9;
+    background-image: url('images/oel5.png'), url('images/moon.PNG');
+    background-position: center 110px, center 50px;
+    background-repeat: no-repeat;
+    background-size: 550px, 785px;
 }
 
 button {
