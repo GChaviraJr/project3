@@ -1,6 +1,8 @@
-const handleProfileGet = (req, res, db) => {
+const db = require("../models/");
+
+const handleProfileGet = (req, res) => {
   const { id } = req.params;
-  db.select('*').from('users').where({id})
+  db.Users.findById(id, (err) => {})
     .then(user => {
       if (user.length) {
         res.json(user[0])
@@ -11,12 +13,10 @@ const handleProfileGet = (req, res, db) => {
     .catch(err => res.status(400).json('error getting user'))
 }
 
-const handleProfileUpdate = (req, res, db) => {
-  const { id } = req.params
-  const { name, age, pet } = req.body.formInput
-  db('users')
-  .where({ id })
-  .update({ name: name })
+const handleProfileUpdate = (req, res) => {
+  const { id } = req.params;
+  const { name, age, pet } = req.body.formInput;
+  db.Users.findByIdAndUpdate( id, { name }, (err) => {})
   .then(resp => {
     if (resp) {
       res.json("success")
