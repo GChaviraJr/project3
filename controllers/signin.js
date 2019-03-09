@@ -40,6 +40,34 @@ const handleSignin = (bcrypt, req, res) => {
     .catch(err => err)
 }
 
+const handleSignin2 = async (bcrypt, req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return Promise.reject('incorrect form submission');
+  }
+
+  try {
+    const login = await db.Login.findOne({ email, hash })
+    const isValid = bcrypt.compareSync(password, login.hash);
+    const user = await db.Users.findOne({ email })
+
+  } catch (error) {
+
+  }
+
+  return db.Login.find({email, hash})
+    .then(data => {
+      if (isValid) {
+        return db.Users.find({email})
+          .then(user => user[0])
+          .catch(err => res.status(400).json('unable to get user'))
+      } else {
+        return Promise.reject('wrong credentials');
+      }
+    })
+    .catch(err => err)
+}
+
 const getAuthTokenId = (req, res) => {
   const { authorization } = req.headers;
   return redisClient.get(authorization, (err, reply) => {
@@ -53,7 +81,7 @@ const getAuthTokenId = (req, res) => {
 const signinAuthentication = (db, bcrypt) => (req, res) => {
   const { authorization } = req.headers;
   return authorization ? getAuthTokenId(req, res)
-    : handleSignin(db, bcrypt, req, res)
+    : handleSignin2(db, bcrypt, req, res)
     .then(data =>
       data.id && data.email ? createSession(data) : Promise.reject(data))
     .then(session => res.json(session))
