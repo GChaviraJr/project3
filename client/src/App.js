@@ -46,7 +46,7 @@ class App extends Component {
   componentDidMount() {
     const token = window.sessionStorage.getItem('token');
     if (token) {
-      fetch('http://localhost:3000/signin', {
+      fetch('/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ class App extends Component {
         .then(response => response.json())
         .then(data => {
           if (data && data.id) {
-            fetch(`http://localhost:3000/profile/${data.id}`, {
+            fetch(`/profile/${data.id}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-      fetch('http://localhost:3000/imageurl', {
+      fetch('/imageurl', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('http://localhost:3000/image', {
+          fetch('/image', {
             method: 'put',
             headers: {
               'Content-Type': 'application/json',
