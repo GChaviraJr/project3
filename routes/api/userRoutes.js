@@ -1,12 +1,12 @@
-const express = require('express';)
+const express = require('express');
 const router = require("express").Router();
 
 module.exports = router
 
 // Matches with "/api/books"
 router.route("/")
-  .get(usersController.findAll)
-  .post(usersController.create);
+  .get(booksController.findAll)
+  .post(booksController.create);
 
 // Matches with "/api/books/:id"
 router

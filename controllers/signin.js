@@ -1,6 +1,4 @@
 const db = require("../models/");
-const loginController = require('../controllers/loginController')
-const userController = require('../controllers/userController')
 const jwt = require('jsonwebtoken');
 
 // You will want to update your host to the proper address in production
@@ -28,11 +26,11 @@ const handleSignin = (bcrypt, req, res) => {
   if (!email || !password) {
     return Promise.reject('incorrect form submission');
   }
-  return db.Login.find().select(email, hash)
+  return db.Login.find({email, hash})
     .then(data => {
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
-        return db.Users.find().select({email})
+        return db.Users.find({email})
           .then(user => user[0])
           .catch(err => res.status(400).json('unable to get user'))
       } else {
