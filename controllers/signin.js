@@ -47,23 +47,20 @@ const handleSignin2 = async (bcrypt, req, res) => {
     return Promise.reject('incorrect form submission');
   }
 
-  try {
-    const login = await db.Login.findOne({ email})
+  console.log("start of return of handlesignin2")
+    const login = await db.Login.findOne({ email })
     const isValid = bcrypt.compareSync(password, login.hash);
-    const user = await db.Users.findOne({ email })
-
-  } catch (error) {
-
-  }
-
+    const userEmail = await db.Users.findOne({ email })
+    console.log('right before return')
   return db.Login.find({email})
-    .then(data => {
+    .then( login => {
       if (isValid) {
-        return db.Users.find({email})
-          .then(user => user[0])
-          .catch(err => res.status(400).json('unable to get user'))
+        console.log("if statement isValid")
+        return userEmail
+          .then(user => user)
+          .catch(err => res.status(400).json('unable to get user first catch of handlesignin2'))
       } else {
-        return Promise.reject('wrong credentials');
+        return Promise.reject('wrong credentials, last return of handlesignin2');
       }
     })
     .catch(err => err)
@@ -75,6 +72,7 @@ const getAuthTokenId = (req, res) => {
     if (err || !reply) {
       return res.status(401).send('Unauthorized');
     }
+    console.log("completed getAuthTokenId")
     return res.json({id: reply})
   });
 }
@@ -83,9 +81,9 @@ const signinAuthentication = (bcrypt) => (req, res) => {
   const { authorization } = req.headers;
   console.log("before getAuthTokenID");
   return authorization ? getAuthTokenId(req, res)
-    : handleSignin2(db, bcrypt, req, res)
+    : handleSignin2(bcrypt, req, res)
     .then(data =>
-      data.id && data.email ? createSession(data) : Promise.reject(data))
+      data._id && data.email ? createSession(data) : Promise.reject(data))
     .then(session => res.json(session))
     .catch(err => res.status(400).json(err));
 }
