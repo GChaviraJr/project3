@@ -4,6 +4,9 @@ FROM node:11.10.1-stretch
 # Set the working directory
 RUN mkdir -p /opt/project3/node_modules && chown -R node:node /opt/project3
 RUN mkdir -p /opt/project3/client/node_modules && chown -R node:node /opt/project3/client 
+RUN mkdir -p /opt/project3/data/mongo
+RUN mkdir -p /opt/project3/data/redis
+
 WORKDIR /opt/project3
 
 # Install any needed packages specified in package.json file

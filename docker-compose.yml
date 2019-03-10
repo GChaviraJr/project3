@@ -12,5 +12,9 @@ services:
       - .:/opt/project3
   redis: 
     image: "redis:5.0.3-stretch"
+    volumes:
+      - .:/opt/project3/data/redis
   mongo: 
     image: "mongo:3.6.11-stretch"
+    volumes: 
+      - .:/opt/project3/data/mongo
