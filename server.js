@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require('mongoose')
 const app = express();
 const PORT = process.env.PORT || 3001;
+const db = require("./models/index");
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 
@@ -23,7 +24,8 @@ if (process.env.NODE_ENV === "production") {
 // app.use(routes);
 
 // Connect to the Mongo DB
-const db = mongoose.connect(process.env.MONGODB_URI || "mongodb://mongo/nightowl");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://mongo/nightowl");
+
 
 app.post('/signin', signin.signinAuthentication(db, bcrypt))
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })

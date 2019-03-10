@@ -6,15 +6,24 @@ services:
     image: gchavirajr/night-owl
     command: yarn start:dev
     working_dir: /opt/project3
+    links:
+      - mongo
+    environment:
+      - MONGODB_URI://mongoCache
+    depends_on: 
+      - redis
+      - mongo
     ports: 
       - "3001:3001"
     volumes:
       - .:/opt/project3
   redis: 
     image: "redis:5.0.3-stretch"
+    container_name: redisCache
     volumes:
       - .:/opt/project3/data/redis
   mongo: 
     image: "mongo:3.6.11-stretch"
+    container_name: mongoCache
     volumes: 
       - .:/opt/project3/data/mongo

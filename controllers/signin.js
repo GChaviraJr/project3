@@ -23,14 +23,15 @@ const createSession = (user) => {
 
 const handleSignin = (bcrypt, req, res) => {
   const { email, password } = req.body;
+  console.log("handlesignin after destructering")
   if (!email || !password) {
     return Promise.reject('incorrect form submission');
   }
-  return db.Login.find({email})
+  return db.Login.findOne({email})
     .then(data => {
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
-        return db.Users.find({email})
+        return db.Users.findOne({email})
           .then(user => user[0])
           .catch(err => res.status(400).json('unable to get user'))
       } else {
@@ -78,8 +79,9 @@ const getAuthTokenId = (req, res) => {
   });
 }
 
-const signinAuthentication = (db, bcrypt) => (req, res) => {
+const signinAuthentication = (bcrypt) => (req, res) => {
   const { authorization } = req.headers;
+  console.log("before getAuthTokenID");
   return authorization ? getAuthTokenId(req, res)
     : handleSignin2(db, bcrypt, req, res)
     .then(data =>
