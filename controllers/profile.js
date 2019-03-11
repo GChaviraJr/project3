@@ -2,26 +2,28 @@ const db = require("../models/");
 
 const handleProfileGet = (req, res) => {
   const { id } = req.params;
-  db.Users.findById(id, (err) => {})
+  db.Users.findById(id)
     .then(user => {
-      if (user.length) {
+      if (user) {
+        console.log('if statement handleprofileget')
         res.json(user[0])
       } else {
-        res.status(400).json('Not found')
+        res.status(400).json('Credentials not found getting')
       }
     })
-    .catch(err => res.status(400).json('error getting user'))
+    .catch(err => res.status(400).json('error getting credentials'))
 }
 
 const handleProfileUpdate = (req, res) => {
-  const { id } = req.params;
+  const { _id } = req.params;
   const { name, age, pet } = req.body.formInput;
-  db.Users.findByIdAndUpdate( id, { name }, (err) => {})
+  db.Users.findByIdAndUpdate( _id, { name })
   .then(resp => {
     if (resp) {
+      console.log('handleprofileupdate')
       res.json("success")
     } else {
-      res.status(400).json('Not found')
+      res.status(400).json('Credentials not found updating')
     }
   })
   .catch(err => res.status(400).json('error updating user'))

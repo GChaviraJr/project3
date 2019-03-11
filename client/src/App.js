@@ -55,8 +55,8 @@ class App extends Component {
       })
         .then(response => response.json())
         .then(data => {
-          if (data && data.id) {
-            fetch(`/profile/${data.id}`, {
+          if (data && data._id) {
+            fetch(`/profile/${data._id}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ class App extends Component {
 
   loadUser = (data) => {
     this.setState({user: {
-      id: data.id,
+      id: data._id,
       name: data.name,
       email: data.email,
       entries: data.entries,
@@ -90,41 +90,6 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
-  onButtonSubmit = () => {
-    this.setState({imageUrl: this.state.input});
-      fetch('/imageurl', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': window.sessionStorage.getItem('token')
-        },
-        body: JSON.stringify({
-          input: this.state.input
-        })
-      })
-      .then(response => response.json())
-      .then(response => {
-        if (response) {
-          fetch('/image', {
-            method: 'put',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': window.sessionStorage.getItem('token')
-            },
-            body: JSON.stringify({
-              id: this.state.user.id
-            })
-          })
-            .then(response => response.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count}))
-            })
-            .catch(console.log)
-
-        }
-      })
-      .catch(err => console.log(err));
-  }
 
   onRouteChange = (route) => {
     if (route === 'signout') {

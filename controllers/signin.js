@@ -1,4 +1,5 @@
 const db = require("../models/");
+const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jsonwebtoken');
 
 // You will want to update your host to the proper address in production
@@ -21,43 +22,19 @@ const createSession = (user) => {
     .catch(console.log);
 };
 
-const handleSignin = (bcrypt, req, res) => {
-  const { email, password } = req.body;
-  console.log("handlesignin after destructering")
-  if (!email || !password) {
-    return Promise.reject('incorrect form submission');
-  }
-  return db.Login.findOne({email})
-    .then(data => {
-      const isValid = bcrypt.compareSync(password, data[0].hash);
-      if (isValid) {
-        return db.Users.findOne({email})
-          .then(user => user[0])
-          .catch(err => res.status(400).json('unable to get user'))
-      } else {
-        return Promise.reject('wrong credentials');
-      }
-    })
-    .catch(err => err)
-}
-
-const handleSignin2 = async (bcrypt, req, res) => {
+const handleSignin = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return Promise.reject('incorrect form submission');
   }
 
-  console.log("start of return of handlesignin2") 
   return await db.Login.findOne({ email })
     .then( login => {
       const password = req.body.password;
-      console.log(password, login.hash)
-      const isValid = bcrypt.compareSync(password, login.hash);
-      console.log(password, login.hash)
+      const isValid = bcrypt.compareSync(password, login.hash)
       if (isValid) {
-        console.log("if statement isValid")
-        return db.Users.email
-          .then(user => user[0])
+        return db.Users.findOne({ email })
+          .then(user => user)
           .catch(err => res.status(400).json('unable to get user first catch of handlesignin2'))
       } else {
         return Promise.reject('wrong credentials, last return of handlesignin2');
@@ -74,16 +51,14 @@ const getAuthTokenId = (req, res) => {
     if (err || !reply) {
       return res.status(401).send('Unauthorized');
     }
-    console.log("completed getAuthTokenId")
     return res.json({id: reply})
   });
 }
 
-const signinAuthentication = (bcrypt) => (req, res) => {
+const signinAuthentication = () => (req, res) => {
   const { authorization } = req.headers;
-  console.log("before getAuthTokenID");
   return authorization ? getAuthTokenId(req, res)
-    : handleSignin2(bcrypt, req, res)
+    : handleSignin(req, res)
     .then(data =>
       data._id && data.email ? createSession(data) : Promise.reject(data))
     .then(session => res.json(session))
