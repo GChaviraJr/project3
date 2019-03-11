@@ -21,9 +21,9 @@ services:
     image: "redis:5.0.3-stretch"
     container_name: redisCache
     volumes:
-      - opt/project3/data/mongo
+      - .:/opt/project3/data/mongo
   mongo: 
     image: "mongo:3.6.11-stretch"
     container_name: mongoCache
     volumes: 
-      - opt/projet3/data/mongo
+      - .:/opt/projet3/data/mongo
