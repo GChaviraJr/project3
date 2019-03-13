@@ -1,8 +1,8 @@
 const db = require("../models/");
 
 const handleProfileGet = (req, res) => {
-  const { id } = req.params;
-  db.Users.findById(id)
+  const { _id } = req.params;
+  db.Users.findById({_id})
     .then(user => {
       if (user) {
         console.log('if statement handleprofileget')

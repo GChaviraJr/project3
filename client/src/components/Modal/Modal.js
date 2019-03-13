@@ -19,7 +19,7 @@ class Modal extends React.Component {
     // DOM node, or uses 'autoFocus' in a descendant, add
     // state to Modal and only render the children when Modal
     // is inserted in the DOM tree.
-    modalRoot.appendChild(this.el);
+      modalRoot.appendChild(this.el);
   }
 
   componentWillUnmount() {

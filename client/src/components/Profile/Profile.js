@@ -12,7 +12,7 @@ class Profile extends Component {
   }
 
   onProfileUpdate = (data) => {
-    fetch(`/profile/${this.props.user.id}`, {
+    fetch(`/profile/${this.props.user._id}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

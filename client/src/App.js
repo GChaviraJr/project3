@@ -4,7 +4,7 @@ import Navigation from '../src/components/Navigation/Navigation'
 import Signin from '../src/components/Signin/Signin';
 import Register from '../src/components/Register/Register';
 import Logo from '../src/components/Logo/Logo';
-import Rank from '../src/components/Rank/Rank';
+import Home from '../src/components/Home/Home';
 import Profile from '../src/components/Profile/Profile';
 import Modal from '../src/components/Modal/Modal';
 import './App.css'
@@ -93,6 +93,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
+      sessionStorage.clear()
       return this.setState(initialState)
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
@@ -124,7 +125,7 @@ class App extends Component {
         { route === 'home'
           ? <div>
               <Logo />
-              <Rank
+              <Home
                 name={this.state.user.name}
                 entries={this.state.user.entries}
               />
