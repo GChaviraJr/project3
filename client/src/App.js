@@ -11,10 +11,10 @@ import './App.css'
 const particlesOptions = {
   particles: {
     number: {
-      value: 30,
+      value: 50,
       density: {
         enable: true,
-        value_area: 800
+        value_area: 900
       }
     }
   }
@@ -81,7 +81,7 @@ class App extends Component {
       name: data.name,
       email: data.email,
       entries: data.entries,
-      joined: data.joined
+      joined: data.date
     }})
   }
 
