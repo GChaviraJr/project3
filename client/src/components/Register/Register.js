@@ -49,11 +49,11 @@ class Register extends React.Component {
         <main className="pa4 black-80">
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <legend className="f1 fw6 ph0 mh0">Register</legend>
+              <legend className="f1 fw6 ph0 mh0 bg-lightest-blue">Register</legend>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
+                <label className="db fw6 lh-copy f6 bg-lightest-blue" htmlFor="name">Name</label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black"
+                  className="b pa2 input-reset ba bg-black white w-100"
                   type="text"
                   name="name"
                   id="name"
@@ -61,9 +61,9 @@ class Register extends React.Component {
                 />
               </div>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                <label className="db fw6 lh-copy f6 bg-lightest-blue" htmlFor="email-address">Email</label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black"
+                  className="b pa2 input-reset ba bg-black white w-100"
                   type="email"
                   name="email-address"
                   id="email-address"
@@ -71,9 +71,9 @@ class Register extends React.Component {
                 />
               </div>
               <div className="mv3">
-                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                <label className="db fw6 lh-copy f6 bg-lightest-blue" htmlFor="password">Password</label>
                 <input
-                  className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black"
+                  className="b pa2 input-reset ba bg-black white w-100"
                   type="password"
                   name="password"
                   id="password"
@@ -81,13 +81,21 @@ class Register extends React.Component {
                 />
               </div>
             </fieldset>
-            <div className="">
+            <div className="lh-copy mt3">
               <input
                 onClick={this.onSubmitSignIn}
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                className="f6 link dim black db pointer bg-lightest-blue"
                 type="submit"
                 value="Register"
               />
+            </div>
+            <div className="lh-copy mt3">
+              <p
+                onClick={() => this.props.onRouteChange("signin")}
+                className="f6 link dim black db pointer bg-lightest-blue"
+              >
+                Sign In
+              </p>
             </div>
           </div>
         </main>

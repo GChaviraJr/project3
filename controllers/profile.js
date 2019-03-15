@@ -15,9 +15,9 @@ const handleProfileGet = (req, res) => {
 }
 
 const handleProfileUpdate = (req, res) => {
-  const { _id } = req.params;
+  
   const { name, age, pet } = req.body.formInput;
-  db.Users.findByIdAndUpdate( _id, { name })
+  db.Users.findOneAndUpdate({ name })
   .then(resp => {
     if (resp) {
       console.log('handleprofileupdate')

@@ -49,13 +49,13 @@ class Signin extends React.Component {
         <main className="pa4 black-80">
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <legend className="f1 fw6 ph0 mh0">Sign In</legend>
+              <legend className="f1 fw6 ph0 mh0 bg-lightest-blue">Sign In</legend>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">
+                <label className="db fw6 lh-copy f6 bg-lightest-blue" htmlFor="email-address">
                   Email
                 </label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black"
+                  className="b pa2 input-reset ba bg-black white w-100 autoFill"
                   type="email"
                   name="email-address"
                   id="email-address"
@@ -63,11 +63,11 @@ class Signin extends React.Component {
                 />
               </div>
               <div className="mv3">
-                <label className="db fw6 lh-copy f6" htmlFor="password">
+                <label className="db fw6 lh-copy f6 bg-lightest-blue" htmlFor="password">
                   Password
                 </label>
                 <input
-                  className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black"
+                  className="b pa2 input-reset ba bg-black white w-100"
                   type="password"
                   name="password"
                   id="password"
@@ -78,7 +78,7 @@ class Signin extends React.Component {
             <div className="">
               <input
                 onClick={this.onSubmitSignIn}
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                className="b ph3 pv2 input-reset ba b--black bg-lightest-blue grow pointer f6 dib"
                 type="submit"
                 value="Sign in"
               />
@@ -86,7 +86,7 @@ class Signin extends React.Component {
             <div className="lh-copy mt3">
               <p
                 onClick={() => onRouteChange("register")}
-                className="f6 link dim black db pointer"
+                className="f6 link dim black db pointer bg-lightest-blue"
               >
                 Register
               </p>

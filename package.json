@@ -20,6 +20,7 @@
     "start": "node server.js",
     "start:dev": "nodemon server.js",
     "client": "cd client && yarn start",
+    "postinstall": "cd client && yarn",
     "seed": "node scripts/seedDB.js",
     "build": "cd client && yarn build",
     "heroku-postbuild": "yarn build"

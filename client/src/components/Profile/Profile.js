@@ -6,6 +6,7 @@ class Profile extends Component {
     super(props)
     this.state = {
       name: this.props.user.name,
+      date: this.props.user.date,
       age: this.props.user.age,
       pet: this.props.user.pet
     }
@@ -25,6 +26,8 @@ class Profile extends Component {
       if (resp.status === 200 || resp.status === 304) {
         this.props.toggleModal();
         this.props.loadUser({ ...this.props.user, ...data });
+        console.log(this.props.user) 
+        console.log(data)
       }
     }).catch(console.log)
   }
@@ -57,8 +60,7 @@ class Profile extends Component {
               className='h3 w3 dib' alt='avatar'
             />
             <h1>{name}</h1>
-            <h4>{`Images submitted: ${user.entries}`}</h4>
-            <p>{`Member since: ${new Date(user.joined).toLocaleDateString()}`}</p>
+            <h4>{`Member since: ${user.date}`}</h4>
             <hr />
             <label className='mt2 fw6' htmlFor='user-name'>Name:</label>
             <input onChange={this.onFormChange} type='text' name='user-name' className='pa2 ba w-100' placeholder={name}></input>

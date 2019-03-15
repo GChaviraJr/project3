@@ -14,7 +14,7 @@ class Home extends Component {
     return (
       <div>
         <div className='white f3'>
-          {`${name}, welcome to your home page`}
+          <h2>{`${name}, welcome to your home page`}</h2>
         </div>
         <div className='white f1'>
           {entries}

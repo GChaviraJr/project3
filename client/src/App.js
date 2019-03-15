@@ -3,7 +3,6 @@ import Particles from 'react-particles-js';
 import Navigation from '../src/components/Navigation/Navigation'
 import Signin from '../src/components/Signin/Signin';
 import Register from '../src/components/Register/Register';
-import Logo from '../src/components/Logo/Logo';
 import Home from '../src/components/Home/Home';
 import Profile from '../src/components/Profile/Profile';
 import Modal from '../src/components/Modal/Modal';
@@ -124,7 +123,6 @@ class App extends Component {
         }
         { route === 'home'
           ? <div>
-              <Logo />
               <Home
                 name={this.state.user.name}
                 entries={this.state.user.entries}
