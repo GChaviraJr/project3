@@ -23,9 +23,3 @@ WORKDIR /opt/project3
 
 # Make port 3001 available to the world outside this container
 EXPOSE 3001
-
-# Define environment variable
-# ENV NODE_VERSION $NODE_VERSION
-
-# Build arguments
-# ARG NODE_VERSION=11.10.1
