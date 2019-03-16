@@ -34,7 +34,9 @@ class Register extends React.Component {
       })
     })
       .then(response => response.json())
+      
       .then(user => {
+        console.log("second .then user: ", user)
         if (user._id) {
           console.log("go here");
           this.props.loadUser(user)
@@ -82,14 +84,12 @@ class Register extends React.Component {
               </div>
             </fieldset>
             <div className="lh-copy mt3">
-                <p
+              <input
                 onClick={this.onSubmitSignIn}
                 className="f6 link dim black db pointer bg-lightest-blue"
                 type="submit"
                 value="Register"
-                >
-                Register
-              </p>
+              />
             </div>
             <div className="lh-copy mt3">
               <p
