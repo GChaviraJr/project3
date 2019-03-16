@@ -1,7 +1,7 @@
-const loginController = require('../controllers/loginController')
-const userController = require('../controllers/userController')
+const loginController = require('./loginController')
+const userController = require('./userController')
 
-const handleRegister = (req, res, db, bcrypt) => {
+const handleRegister = (req, db, res, bcrypt) => {
   const { email, name, password } = req.body;
   
   if (!email || !name || !password) {

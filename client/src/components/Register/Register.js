@@ -82,12 +82,14 @@ class Register extends React.Component {
               </div>
             </fieldset>
             <div className="lh-copy mt3">
-              <input
+                <p
                 onClick={this.onSubmitSignIn}
                 className="f6 link dim black db pointer bg-lightest-blue"
                 type="submit"
                 value="Register"
-              />
+                >
+                Register
+              </p>
             </div>
             <div className="lh-copy mt3">
               <p
