@@ -15,6 +15,10 @@ class ProfileIcon extends React.Component {
     });
   }
 
+  onSignOut = () => {
+    window.sessionStorage.setItem('route', 'signin')
+  }
+
   render() {
     return (
       <div className="pa4 tc">

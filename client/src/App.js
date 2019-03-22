@@ -20,11 +20,14 @@ const particlesOptions = {
   }
 }
 
+const currentRoute = window.sessionStorage.getItem('route')
+const currentUser = window.sessionStorage.getItem('user')
+
 const initialState = {
   input: '',
-  route: 'signin',
+  route: currentRoute || 'signin',
   isProfileOpen: false,
-  isSignedIn: false,
+  isSignedIn: currentUser || false,
   user: {
     id: '',
     name: '',
@@ -35,6 +38,7 @@ const initialState = {
     pet: ''
   }
 }
+
 
 class App extends Component {
   constructor() {
@@ -89,21 +93,28 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
+  
 
   onRouteChange = (route) => {
     if (route === 'signout') {
       sessionStorage.clear()
-      return this.setState(initialState)
+      sessionStorage.setItem('route', 'signin')
+      this.setState(initialState)
+      return window.location.reload()
     } else if (route === 'home') {
-      this.setState({isSignedIn: true})
+      this.setState({isSignedIn: true })
+      window.sessionStorage.setItem('route', this.state.route)
+      window.sessionStorage.setItem('user', this.state)
     }
     this.setState({route: route});
+    window.sessionStorage.setItem('route', this.state.route)
   }
 
   toggleModal = () => {
     this.setState(state => ({
       ...state,
       isProfileOpen: !state.isProfileOpen,
+      
     }));
   }
 
@@ -116,7 +127,7 @@ class App extends Component {
         />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} toggleModal={this.toggleModal}/>
         {
-          isProfileOpen &&
+          isProfileOpen && 
           <Modal>
             <Profile isProfileOpen={isProfileOpen} toggleModal={this.toggleModal} user={user} loadUser={this.loadUser} />
           </Modal>

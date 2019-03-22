@@ -5,8 +5,13 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+        search: '',
     }
+  }
+
+  onSearchChange = (event) => {
+    this.setState({search: event.target.value})
+  
   }
 
     render() {
@@ -19,9 +24,9 @@ class Home extends Component {
         <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">Where do we want to go?</div>
         <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
             <label className='mt2 fw6' htmlFor='yelp-search'>Search for places to go</label>
-            <input onChange={this.onFormChange} type='text' name='yelp-search' className='pa2 ba w-100' placeholder='bar, club...'></input>
+            <input onSearchChange={this.search} type='text' name='yelp-search' className='pa2 ba w-100' placeholder='bar, club...'></input>
         </div>
-        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">{`We are going to ${placeChosen}`}</div>
+        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">{`We are going to ${this.search}`}</div>
         <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">If you need a ride, use Uber!</div>
         <button>Uber Button</button>
       </div>
