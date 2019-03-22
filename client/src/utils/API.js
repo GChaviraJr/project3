@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const BASEURL = "https://api.yelp.com/v3/businesses/search";
+const APIKEY = "eGyFYoGa3oYrHwELLpuXsE9A1l9W6d6AoJszCKMPa3M9SNgR2kx1md-nelFS1jJdfOb1sCD3knBmuWA7kDTZSoZMehkn0-Avx1VDY6QMhAX45RpIuKyxSBZ53eTsW3Yx";
+
 export default {
   // Gets all login's
   getLogins: function() {
@@ -33,4 +36,11 @@ export default {
   saveUser: function(usersData) {
     return axios.post("/api/users", usersData);
   },
+  search: function(query) {
+    return axios.get(BASEURL + query + APIKEY);
+  }
 };
+
+
+
+// Export an object with a "search" method that searches the Giphy API for the passed query
