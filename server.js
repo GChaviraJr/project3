@@ -7,10 +7,12 @@ const db = require("./models/index");
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 
+
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const auth = require('./controllers/authorization');
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +24,8 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 // app.use(routes);
-
+require('./controllers/yelpController.js')(app)
+require('./client/utils/yelpAPI.js')(app)
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://mongo/nightowl");
 
