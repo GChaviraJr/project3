@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 // app.use(routes);
 require('./controllers/yelpController.js')(app)
-require('./client/utils/yelpAPI.js')(app)
+require('./client/src/utils/yelpAPI')(app)
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://mongo/nightowl");
 

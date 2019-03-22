@@ -19,7 +19,8 @@
     "react-tilt": "^0.1.4",
     "reactstrap": "^7.1.0",
     "redis": "^2.8.0",
-    "tachyons": "^4.11.1"
+    "tachyons": "^4.11.1",
+    "yelp-fusion": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
