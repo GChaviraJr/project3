@@ -4,7 +4,7 @@ services:
   nightowl:
     container_name: app
     image: gchavirajr/night-owl
-    command: yarn start:dev
+    command: yarn start
     working_dir: /opt/project3
     links:
       - mongo
