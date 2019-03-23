@@ -138,6 +138,7 @@ class App extends Component {
                 name={this.state.user.name}
                 entries={this.state.user.entries}
               />
+              {/* ;afksldjsfl;kdj */}
             </div>
           : (
              route === 'signin'

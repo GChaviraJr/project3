@@ -1,20 +1,27 @@
-import axios from 'axios';
+const axios = require('axios')
 
-export default {
-    searchRestaurants: function (cityInput) {
+const yelpAPI = {
+    searchRestaurants (cityInput) {
       return axios.post("api/restaurants", cityInput)
     },
-    getRestaurants: function () {
+    
+    getRestaurants () {
       return axios.get("api/restaurants")
     },
-    deleteRestaurants: function () {
+
+    deleteRestaurants () {
       return axios.delete("api/restaurants/") 
     },
-    createSelectedLocation: function (locationInput) {
+    
+    createSelectedLocation (locationInput) {
       return axios.post("api/selectedLocation", locationInput)
     },
-    deleteSelectedLocations: function () {
+
+    deleteSelectedLocations () {
       return axios.delete("api/selectedLocation/")
     }
-  };
+  }
   
+module.exports = {
+yelpAPI
+}

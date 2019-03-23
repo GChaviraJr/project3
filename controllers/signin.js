@@ -57,10 +57,13 @@ const getAuthTokenId = (req, res) => {
 
 const signinAuthentication = () => (req, res) => {
   const { authorization } = req.headers;
-  return authorization ? getAuthTokenId(req, res)
-    : handleSignin(req, res)
-    .then(data =>
-      data._id && data.email ? createSession(data) : Promise.reject(data))
+  return authorization 
+    ? getAuthTokenId(req, res)
+    : handleSignin(req, res).then(data => (
+      data._id && data.email 
+        ? createSession(data)
+        : Promise.reject(data)
+    ))
     .then(session => res.json(session))
     .catch(err => res.status(400).json(err));
 }

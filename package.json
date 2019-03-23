@@ -19,7 +19,7 @@
     "yelp-fusion": "^2.2.1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js & yarn client",
     "start:dev": "nodemon server.js",
     "client": "cd client && yarn start",
     "seed": "node scripts/seedDB.js",
