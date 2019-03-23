@@ -26,4 +26,4 @@ services:
     image: "mongo:3.6.11-stretch"
     container_name: mongoCache
     volumes: 
-      - .:/opt/projet3/data/mongo
+      - .:/opt/project3/data/mongo
