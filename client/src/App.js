@@ -138,6 +138,7 @@ class App extends Component {
                 name={this.state.user.name}
                 entries={this.state.user.entries}
               />
+              {/* add Yelp component here */}
             </div>
           : (
              route === 'signin'
