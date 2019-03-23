@@ -138,7 +138,11 @@ class App extends Component {
                 name={this.state.user.name}
                 entries={this.state.user.entries}
               />
+<<<<<<< HEAD
               {/* ;afksldjsfl;kdj */}
+=======
+              {/* add Yelp component here */}
+>>>>>>> e71cd12b7b787f7fc86df535b30a64ae16f1689a
             </div>
           : (
              route === 'signin'
