@@ -2,7 +2,7 @@
   "name": "mern",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:3001/",
+  "proxy": "https://127.0.0.1:3001/",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt-nodejs": "^0.0.3",
