@@ -36,7 +36,13 @@ const initialState = {
     joined: '',
     age: 0,
     pet: ''
+  },
+  restaurants: {
+    id: '',
+    name: '',
+    address: ''
   }
+
 }
 
 

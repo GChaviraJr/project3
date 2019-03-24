@@ -12,7 +12,7 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const auth = require('./controllers/authorization');
 const yelpAPI = require('./client/src/utils/yelpAPI')
-require('./controllers/yelpController.js')(app)
+require('./controllers/yelpController')(app)
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

@@ -5,7 +5,7 @@ const client = yelp.client(apiKey);
 const db = require('../models')
 
 module.exports = function(app) {
-    app.get("/api/restaurants", function(req, res) {
+    app.get("api/restaurants", function(req, res) {
       db.Results.find({}).then(function(data) {
         res.json(data);
         return data;
@@ -13,10 +13,9 @@ module.exports = function(app) {
     });
   
     // Create a new restaurant
-    app.post("/api/restaurants", function(req, res) {
-      console.log(req.body.text);
-      client
-        .search({
+    app.post("api/restaurants", function(req, res) {
+      console.log(req.body.text)
+      client.search({
           location: req.body.text,
           categories: "bars",
           limit: 10
@@ -41,7 +40,7 @@ module.exports = function(app) {
         });
     });
   
-    app.post("/api/selectedLocation", (req, res) => {
+    app.post("api/selectedLocation", (req, res) => {
       db.selectedLocation.create({
         name: req.body.name,
         address: req.body.address
@@ -50,7 +49,7 @@ module.exports = function(app) {
       });
     });
   
-    app.delete("/api/selectedLocation", function(req, res) {
+    app.delete("api/selectedLocation", function(req, res) {
       db.selectedLocation.deleteMany({
           name: req.body.name, 
           address: req.body.address
@@ -60,7 +59,7 @@ module.exports = function(app) {
       });
     });
   
-    app.delete("/api/restaurants/", function(req, res) {
+    app.delete("api/restaurants/", function(req, res) {
       db.Results.deleteMany({
         name: req.body.name, 
         address: req.body.address,

@@ -1,8 +1,12 @@
 const axios = require('axios')
 
 const yelpAPI = {
-    searchRestaurants (cityInput) {
-      return axios.post("api/restaurants", cityInput)
+    searchRestaurants: function (cityInput) {
+      return fetch("api/restaurants", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        data: JSON.stringify(cityInput)
+      })
     },
     
     getRestaurants () {
