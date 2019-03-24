@@ -30,7 +30,7 @@ module.exports = function(app) {
               ].location.display_address.join(","),
               URL: response.jsonBody.businesses[i].url
             };
-            // console.log(JSON.stringify(response, null, 2));
+
             db.Results.create(tableData);
           }
           res.status(200).send(response);
