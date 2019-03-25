@@ -9,7 +9,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        restaurants: [],
+        restaurants: {},
         search: '',
         restaurantId: '',
         restaurantName: '',
@@ -24,56 +24,38 @@ onSearchChange = event => {
 }
 
 onSubmitSearch = () => {
-this.handleUserInput() 
+this.handleUserInput() ;
 }
 
 
-refreshRestaurants = () => {
-  console.log('In refreshRestaurants, but before getRestaurants')
+refreshRestaurants = function () {
   yelpAPI.getRestaurants().then(function (data) {
-    const listRestaurants = {
-      id: '',
-      name: '',
-      address: '' 
-    }
-    const restaurant = data.map((restaurant) => {
-      return listRestaurants = {
-        id: data.restaurant.id,
-        name: data.restaurant.name,
-        address: data.restaurant.address
-      }
-    })
-    console.log(data)
-    this.setState({
-      restaurants: restaurant
-    })  
-  });
+    console.log('Just data', data)
+    console.log('data name', data.name)
+    console.log('data address', data.address)
+  })
 };
 
 // handleUserInput
 //  is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-handleUserInput = (event) => {
-  console.log("Here I am");
-  // deleteSelectedLocations();
-  // yelpAPI.deleteRestaurants();
+handleUserInput = () => {
+  // yelpAPI.deleteRestaurantsInCurrentDatabase();
 
   const userCityInput = this.state.search
   const cityInput = {
     text: userCityInput
   }
 
-
-  if (!cityInput.text) {
+  if (!userCityInput) {
     alert("You must enter a city!");
     return;
   }
-  console.log('After first if statement')
  
-  yelpAPI.searchRestaurants(cityInput).then(function () {
-    console.log("in searchRestaurants")
+  yelpAPI.searchRestaurants(cityInput).then(() => {
     this.refreshRestaurants()
   });
+  
 };
 
     render() {

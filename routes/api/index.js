@@ -1,7 +1,9 @@
 const router = require("express").Router();
-const bookRoutes = require("./books");
+const yelpRestaurantsRoute = require("./yelpRestaurantsRoute");
+const yelpSelectedLocationRoute = require('./yelpSelectedLocationRoute')
 
-// Book routes
-router.use("/books", bookRoutes);
+// API Routes
+router.use("/restaurants", yelpRestaurantsRoute );
+router.use("/selectedLocation", yelpSelectedLocationRoute)
 
 module.exports = router;

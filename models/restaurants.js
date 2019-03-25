@@ -4,14 +4,11 @@ const Schema = mongoose.Schema
 const resultsSchema = new Schema ({
     name: String,
     address: String,
+    coordinates: Array,
     URL: String,
     date: {
         type: Date,
         default: Date.now
-    },
-    saved: {
-        type: Boolean,
-        default: false
     }
 });
 
