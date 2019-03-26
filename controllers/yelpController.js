@@ -1,7 +1,5 @@
 const yelp = require("yelp-fusion");
 const apiKey = 'uQGKIDvAz-IshxibMcDVELD7LT_disuxdvp14BbxXBcqDHJAgRx20z3VCCyS67ePJZPg8IO9aabHdLOOdWYSGJLdgw1QJ4sLujEMJJ8_mzKsqXQlq0M5Vu1SIXOSXHYx';
-const express = require('express')
-const app = express();
 const client = yelp.client(apiKey);
 const db = require('../models')
 
@@ -20,22 +18,7 @@ module.exports = {
           limit: 10
         }).then(response => {
           for (let i = 0; i < 10; i++) {
-          //   let tableData = {
-          //     name: response.jsonBody.businesses[i].name,
-          //     address: response.jsonBody.businesses[
-          //       i
-          //     ].location.display_address.join(","),
-          //     coordinates: [
-          //       response.jsonBody.businesses[
-          //       i
-          //     ].coordinates.latitude,
-          //       response.jsonBody.businesses[
-          //         i
-          //       ].coordinates.longitude 
-          //     ],
-          //     URL: response.jsonBody.businesses[i].url
-          // };
-            db.Results.create({
+           db.Results.create({
               name: JSON.stringify(response.jsonBody.businesses[i].name),
               address: JSON.stringify(response.jsonBody.businesses[
                 i
@@ -51,9 +34,10 @@ module.exports = {
               URL: JSON.stringify(response.jsonBody.businesses[i].url)
             })
           }
-          res.status(200).send(response);
-        }).catch(e => {
-          console.log(e);
+          console.log('before send', response.jsonBody.businesses)
+          res.status(200).send(response.jsonBody.businesses);
+        }).catch(err => {
+          console.log(err);
         });
   },
   

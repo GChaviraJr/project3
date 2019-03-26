@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const selectedLocationSchema = new Schema ({
     name: String,
     address: String,
+    coordinates: Array,
     date: {
         type: Date,
         default: Date.now

@@ -24,31 +24,47 @@ onSearchChange = event => {
   })
 }
 
+onSelectedChange = event => {
+  let locationInput = {
+    name: event.target.value.name,
+    address: event.target.value.address,
+    coordinates: event.target.value.coordinates
+  }
+  
+  yelpAPI.createSelectedLocation(locationInput)
+    .then( (data) => {
+      this.setState({
+    restaurantID: data._id,
+    restaurantName: data.name,
+    restaurantAddress: data.address,
+    coordinates: data.coordinates
+  })
+    console.log('this.state - Name:', this.state.restaurantName)
+  console.log('this.state - Addy:', this.state.restaurantAddress)
+  console.log('this.state - coordinates:', this.state.coordinates)
+    })
+}
+
 onSubmitSearch = () => {
 this.handleUserInput() ;
 }
 
 
-refreshRestaurants = () => {
-  yelpAPI.getRestaurants().then((data) => {
-    let dataChange = [data]
-    let $restaurants = dataChange.map((restaurant) => {
-      console.log('In func rest', restaurant)
-      return restaurant
-      })
-    this.setState({
-      restaurants: $restaurants,
-      restaurantId: $restaurants.id,
-      restaurantName: $restaurants.name,
-      restaurantAddress: $restaurants.address,
+refreshRestaurants = function () {
+  yelpAPI.getRestaurants().then(function(data) {
+    return data
+  }).then(response => response.json())
+      .then(data => {
+      let dataChange = [data]
+      let $restaurants = dataChange.map(function(restaurant) {
+        return restaurant
     })
-    console.log('after set state', this.state.restaurants)
+    this.setState({
+        restaurants: $restaurants[0]
+      })
   })
 };
 
-// handleUserInput
-//  is called whenever we submit a new example
-// Save the new example to the db and refresh the list
 handleUserInput = () => {
   yelpAPI.deleteRestaurantsInCurrentDatabase();
 
@@ -61,16 +77,15 @@ handleUserInput = () => {
     alert("You must enter a city!");
     return;
   }
- 
+
   yelpAPI.searchRestaurants(cityInput).then(() => {
     this.refreshRestaurants()
   });
-  
 };
 
     render() {
       const { name } = this.props
-      console.log(this.state.restaurants)
+      const { restaurants } = this.state
     return (
       <div>
         <div className='white f3'>
@@ -86,20 +101,22 @@ handleUserInput = () => {
         </div>
         <Row>
           <Col size='md-12'>
-            <Card title='Searched Restaurants'>
-              {this.state.restaurants.length ? (
-                <List>
-                  {this.state.restaurants.map(restaurant => (
-                    <Yelp
+            <Card className="black-80" title='Searched Restaurants'>
+              {restaurants.length ? (
+                <List >
+                  {restaurants.map(restaurant => (
+                    <Yelp 
                       key={restaurant}
-                      id={restaurant.id}
+                      id={restaurant._id}
                       name={restaurant.name}
                       address={restaurant.address}
+                      url={restaurant.URL}
+                      onClick={() => this.onSelectedChange()}
                      />
                   ))}
                 </List>
               ) : (
-                <h3 className='text-center'>No Searched Restaurants</h3>
+                <h3 className='text-center black-80'>No Searched Restaurants</h3>
               )}
             </Card>
           </Col>
