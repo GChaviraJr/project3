@@ -9,11 +9,12 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        restaurants: {},
+        restaurants: [],
         search: '',
         restaurantId: '',
         restaurantName: '',
         restaurantAddress: '',
+        coordinates: []
     }
   }
 
@@ -28,11 +29,20 @@ this.handleUserInput() ;
 }
 
 
-refreshRestaurants = function () {
-  yelpAPI.getRestaurants().then(function (data) {
-    console.log('Just data', data)
-    console.log('data name', data.name)
-    console.log('data address', data.address)
+refreshRestaurants = () => {
+  yelpAPI.getRestaurants().then((data) => {
+    let dataChange = [data]
+    let $restaurants = dataChange.map((restaurant) => {
+      console.log('In func rest', restaurant)
+      return restaurant
+      })
+    this.setState({
+      restaurants: $restaurants,
+      restaurantId: $restaurants.id,
+      restaurantName: $restaurants.name,
+      restaurantAddress: $restaurants.address,
+    })
+    console.log('after set state', this.state.restaurants)
   })
 };
 
@@ -40,7 +50,7 @@ refreshRestaurants = function () {
 //  is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 handleUserInput = () => {
-  // yelpAPI.deleteRestaurantsInCurrentDatabase();
+  yelpAPI.deleteRestaurantsInCurrentDatabase();
 
   const userCityInput = this.state.search
   const cityInput = {
@@ -59,7 +69,8 @@ handleUserInput = () => {
 };
 
     render() {
-      const { name, restaurantId, restaurantName, restaurantAddress } = this.props
+      const { name } = this.props
+      console.log(this.state.restaurants)
     return (
       <div>
         <div className='white f3'>
@@ -80,14 +91,15 @@ handleUserInput = () => {
                 <List>
                   {this.state.restaurants.map(restaurant => (
                     <Yelp
-                      key={restaurantId}
-                      name={restaurantName}
-                      address={restaurantAddress}
+                      key={restaurant}
+                      id={restaurant.id}
+                      name={restaurant.name}
+                      address={restaurant.address}
                      />
                   ))}
                 </List>
               ) : (
-                <h2 className='text-center'>No Searched Restaurants</h2>
+                <h3 className='text-center'>No Searched Restaurants</h3>
               )}
             </Card>
           </Col>

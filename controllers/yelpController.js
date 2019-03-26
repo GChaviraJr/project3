@@ -36,10 +36,10 @@ module.exports = {
           //     URL: response.jsonBody.businesses[i].url
           // };
             db.Results.create({
-              name: response.jsonBody.businesses[i].name,
-              address: response.jsonBody.businesses[
+              name: JSON.stringify(response.jsonBody.businesses[i].name),
+              address: JSON.stringify(response.jsonBody.businesses[
                 i
-              ].location.display_address,
+              ].location.display_address.join(",")),
               coordinates: [
                 response.jsonBody.businesses[
                 i
@@ -48,7 +48,7 @@ module.exports = {
                   i
                 ].coordinates.longitude 
               ],
-              URL: response.jsonBody.businesses[i].url
+              URL: JSON.stringify(response.jsonBody.businesses[i].url)
             })
           }
           res.status(200).send(response);

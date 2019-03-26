@@ -1,8 +1,9 @@
 
+
 const yelpAPI = {
     searchRestaurants (cityInput) {
       return fetch("api/restaurants", {
-        method: "post",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cityInput)
       })
@@ -10,19 +11,19 @@ const yelpAPI = {
     
     getRestaurants () {
       return fetch("api/restaurants", {
-        method: "get"
+        method: "GET"
       })
     },
 
     deleteRestaurants () {
       return fetch("api/restaurants/", {
-        method: "delete"
+        method: "DELETE"
       }) 
     },
     
     createSelectedLocation (locationInput) {
       return fetch("api/selectedLocation", {
-        method: "post",
+        method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(locationInput)
       })
@@ -30,7 +31,7 @@ const yelpAPI = {
 
     deleteSelectedLocations () {
       return fetch("api/selectedLocation/", {
-        method: "delete"
+        method: "DELETE"
       })
     },
 

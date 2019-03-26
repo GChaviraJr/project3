@@ -36,13 +36,7 @@ const initialState = {
     joined: '',
     age: 0,
     pet: ''
-  },
-  restaurants: {
-    id: '',
-    name: '',
-    address: ''
   }
-
 }
 
 
@@ -140,7 +134,7 @@ class App extends Component {
         }
         { route === 'home'
           ? <div>
-              <Home
+              <Home key={this.state.user._id}
                 name={this.state.user.name}
                 entries={this.state.user.entries}
               />
