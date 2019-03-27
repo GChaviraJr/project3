@@ -19,10 +19,10 @@ module.exports = {
         }).then(response => {
           for (let i = 0; i < 10; i++) {
            db.Results.create({
-              name: JSON.stringify(response.jsonBody.businesses[i].name),
-              address: JSON.stringify(response.jsonBody.businesses[
+              name: response.jsonBody.businesses[i].name,
+              address: response.jsonBody.businesses[
                 i
-              ].location.display_address.join(",")),
+              ].location.display_address,
               coordinates: [
                 response.jsonBody.businesses[
                 i
@@ -31,7 +31,7 @@ module.exports = {
                   i
                 ].coordinates.longitude 
               ],
-              URL: JSON.stringify(response.jsonBody.businesses[i].url)
+              URL: response.jsonBody.businesses[i].url
             })
           }
           console.log('before send', response.jsonBody.businesses)

@@ -4,9 +4,10 @@ import { Row, Col } from "../Grid";
 
 
 
-function Yelp({ key, id, onClick, name, address, url }) {
+function Yelp(props) {
+  const {name, address, url } = props
   return (
-    <ListItem onClick={{onClick}} className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+    <ListItem onClick={props.onClick} {...props} className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
       <Row className="flex-wrap-reverse pa4 black-80">
         <Col size="md-8">
           <h3 className="font-italic black-80">{name}</h3>

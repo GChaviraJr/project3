@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Search from '../Portals/Search/Search'
+import Select from '../Portals/Select/Select'
+import Selected from '../Selected/Selected'
 import Yelp from '../Yelp/Yelp'
 import Card from '../Card/Card'
 import { Col, Row } from '../Grid/index'
@@ -14,7 +17,10 @@ class Home extends Component {
         restaurantId: '',
         restaurantName: '',
         restaurantAddress: '',
-        coordinates: []
+        longitude: 0,
+        latitude: 0,
+        isSelected: false,
+        isSearching: true
     }
   }
 
@@ -24,26 +30,26 @@ onSearchChange = event => {
   })
 }
 
-onSelectedChange = event => {
+onSelectedChange = (name, address, coordinates) => {
+  console.log('this is IT', name, address, coordinates)
   let locationInput = {
-    name: event.target.value.name,
-    address: event.target.value.address,
-    coordinates: event.target.value.coordinates
+    name,
+    address,
+    longitude: coordinates[1],
+    latitude: coordinates[0]
   }
-  
-  yelpAPI.createSelectedLocation(locationInput)
-    .then( (data) => {
-      this.setState({
-    restaurantID: data._id,
-    restaurantName: data.name,
-    restaurantAddress: data.address,
-    coordinates: data.coordinates
+  console.log(locationInput)
+
+  this.setState({
+    restaurantName: name,
+    restaurantAddress: address,
+    longitude: coordinates[1],
+    latitude: coordinates[0],
+    isSelected: true,
+    isSearching: false
   })
-    console.log('this.state - Name:', this.state.restaurantName)
-  console.log('this.state - Addy:', this.state.restaurantAddress)
-  console.log('this.state - coordinates:', this.state.coordinates)
-    })
 }
+
 
 onSubmitSearch = () => {
 this.handleUserInput() ;
@@ -55,13 +61,15 @@ refreshRestaurants = function () {
     return data
   }).then(response => response.json())
       .then(data => {
-      let dataChange = [data]
-      let $restaurants = dataChange.map(function(restaurant) {
-        return restaurant
-    })
+        console.log('This is data:', data)
+      // let dataChange = [data]
+    //   let $restaurants = data.map(function(restaurant) {
+    //     return restaurant
+    // })
     this.setState({
-        restaurants: $restaurants[0]
+        restaurants: data
       })
+      console.log('')
   })
 };
 
@@ -83,9 +91,23 @@ handleUserInput = () => {
   });
 };
 
+toggleSelected = () => {
+  this.setState(state => ({
+    ...state,
+    isSelected: !state.isSelected,
+  }));
+}
+
+toggleSearching = () => {
+  this.setState(state => ({
+    ...state,
+    isSearching: state.isSearching,
+  }));
+}
+
     render() {
       const { name } = this.props
-      const { restaurants } = this.state
+      const { restaurants, isSelected, isSearching } = this.state
     return (
       <div>
         <div className='white f3'>
@@ -99,19 +121,23 @@ handleUserInput = () => {
               Search
             </button>
         </div>
-        <Row>
+      {
+        isSearching &&
+      <Search>
+        <Row isSearching={isSearching} toggleSearching={this.toggleSearching}>
           <Col size='md-12'>
-            <Card className="black-80" title='Searched Restaurants'>
+            <Card  className="black-80" title='Searched Restaurants'>
               {restaurants.length ? (
                 <List >
                   {restaurants.map(restaurant => (
                     <Yelp 
-                      key={restaurant}
+                      key={restaurant._id}
                       id={restaurant._id}
                       name={restaurant.name}
                       address={restaurant.address}
                       url={restaurant.URL}
-                      onClick={() => this.onSelectedChange()}
+                      coordinates={restaurant.coordinates}
+                      onClick={this.onSelectedChange}
                      />
                   ))}
                 </List>
@@ -121,9 +147,25 @@ handleUserInput = () => {
             </Card>
           </Col>
         </Row>
-
+      </Search>
+      }
+      {
+        isSelected &&
+      <Select>
+        <Selected 
+        isSelected={isSelected} 
+        toggleSelected={this.toggleSelected}
+        key={restaurants}
+        id={this.state.restaurantId}
+        name={this.state.restaurantName}
+        address={this.state.restaurantAddress}
+        longitude={this.state.longitude}
+        latitude={this.state.latitude}
+        />
         <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">If you need a ride, use Uber!</div>
         <button>Uber Button</button>
+      </Select>
+      }
       </div>
       )
     }
