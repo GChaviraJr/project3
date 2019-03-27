@@ -12,5 +12,5 @@ export function List({ children }) {
 }
 
 export function ListItem({ children, onClick, name, address, coordinates }) {
-  return <li onClick={() => onClick(name, address, coordinates)} className="list-group-item black-80">{children}</li>;
+  return <li onClick={() => onClick(name, address, coordinates)} className="list-group-item white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">{children}</li>;
 }

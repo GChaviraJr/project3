@@ -5,7 +5,7 @@ import Signin from '../src/components/Signin/Signin';
 import Register from '../src/components/Register/Register';
 import Home from '../src/components/Home/Home';
 import Profile from '../src/components/Profile/Profile';
-import Modal from '../src/components/Modal/Modal';
+import Modal from '../src/components/Portals/Modal/Modal';
 import './App.css'
 
 const particlesOptions = {

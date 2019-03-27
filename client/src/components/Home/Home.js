@@ -113,10 +113,10 @@ toggleSearching = () => {
         <div className='white f3'>
           <h2>{`${name}, welcome to your home page`}</h2>
         </div>
-        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">Where do we want to go?</div>
-        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-            <label className='mt2 fw6' htmlFor='yelp-search'>Search for places to go</label>
-            <input type='text' name='yelp-search' className='pa2 ba w-100' onChange={this.onSearchChange} placeholder='bar, club...'></input>
+        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">Where do we want to go?></div>
+        <div className="mt3">
+            <input type='text' name='yelp-search' className='b pa2 input-reset ba bg-black white w-60' onChange={this.onSearchChange} placeholder='bar, club...'></input>
+            <br/>
             <button onClick={() => this.onSubmitSearch()}>
               Search
             </button>
