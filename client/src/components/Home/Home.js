@@ -48,6 +48,8 @@ onSelectedChange = (name, address, coordinates) => {
     isSelected: true,
     isSearching: false
   })
+  const currentSession = window.sessionStorage.setItem('homeState', this.state)
+  this.setState({currentSession})
 }
 
 

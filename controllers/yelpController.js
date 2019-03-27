@@ -1,5 +1,5 @@
 const yelp = require("yelp-fusion");
-const apiKey = process.env.YELP_KEY
+const apiKey = "uQGKIDvAz-IshxibMcDVELD7LT_disuxdvp14BbxXBcqDHJAgRx20z3VCCyS67ePJZPg8IO9aabHdLOOdWYSGJLdgw1QJ4sLujEMJJ8_mzKsqXQlq0M5Vu1SIXOSXHYx"
 const client = yelp.client(apiKey);
 const db = require('../models')
 
