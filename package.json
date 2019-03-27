@@ -25,6 +25,7 @@
     "start:prod": "node server.js & yarn client",
     "start": "node server.js",
     "client": "cd client && yarn start",
+    "postinstall": "cd client && yarn install",
     "seed": "node scripts/seedDB.js",
     "build": "cd client && yarn build",
     "heroku-postbuild": "yarn build"
