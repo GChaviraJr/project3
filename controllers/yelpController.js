@@ -53,7 +53,8 @@ module.exports = {
    deleteSelectedLocation: function(req, res) { 
       db.selectedLocation.deleteMany({
           name: req.body.name, 
-          address: req.body.address
+          address: req.body.address,
+          coordinates: req.body.address
       }).then(function() {
         res.render("input");
         console.log("all selected locations deleted");
@@ -62,9 +63,10 @@ module.exports = {
 
     deleteRestaurant: function(req, res) { 
       db.Results.deleteMany({
-        name: req.body.name, 
-        address: req.body.address,
-        URL: req.body.URL
+        name: req.body,
+        address: req.body,
+        coordinates: req.body,
+        URL: req.body
       }).then(function() {
         console.log("all rows deleted");
       });
