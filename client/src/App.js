@@ -22,13 +22,13 @@ const particlesOptions = {
 }
 
 const currentRoute = window.sessionStorage.getItem('route')
-
+const currentUser = window.sessionStorage.getItem('superState')
 
 const initialState = {
   input: '',
   route: currentRoute || 'signin',
   isProfileOpen: false,
-  isSignedIn: false,
+  isSignedIn: currentUser || false,
   user: {
     id: '',
     name: '',
@@ -37,7 +37,7 @@ const initialState = {
     joined: '',
     age: 0,
     pet: ''
-  } 
+  } || currentUser.user
 }
 
 
@@ -105,6 +105,7 @@ class App extends Component {
     } else if (route === 'home') {
       this.setState({isSignedIn: true })
       window.sessionStorage.setItem('route', this.state.route)
+      window.sessionStorage.setItem('superState', this.state)
       window.sessionStorage.setItem('user', this.state.user.name)
     }
     this.setState({route: route});
@@ -128,7 +129,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    
+    window.sessionStorage.setItem('superState', this.state)
   }
 
   render() {
