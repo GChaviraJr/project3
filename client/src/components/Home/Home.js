@@ -106,6 +106,12 @@ searchProducts = () => {
       console.log(response)
     })
 }
+
+getCode = (callback) => {
+  let url = window.location
+  callback(url.search.split("=")[1])
+}
+
     render() {
       const { name } = this.props
       const { restaurants, isSelected, isSearching } = this.state
@@ -162,9 +168,8 @@ searchProducts = () => {
         address={this.state.restaurantAddress}
         longitude={this.state.longitude}
         latitude={this.state.latitude}
+        searchProducts={this.searchProducts}
         />
-        <div >If you need a ride, use Uber!</div>
-        <button onClick={this.searchProducts}>Uber Button</button>
       </Select>
       }
       </div>
