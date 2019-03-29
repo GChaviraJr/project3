@@ -69,7 +69,7 @@ refreshRestaurants = function () {
 };
 
 handleUserInput = () => {
-  yelpAPI.deleteRestaurantsInCurrentDatabase();
+  yelpAPI.deleteRestaurants()
 
   const userCityInput = this.state.search
   const cityInput = {
