@@ -101,7 +101,7 @@ toggleSearching = () => {
 }
 
 searchProducts = () => {
-    console.log("salkd")
+    console.log("sad")
     axios.get("/api/uber/products").then(function(response) {
       console.log(response)
     })
