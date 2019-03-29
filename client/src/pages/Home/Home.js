@@ -69,7 +69,7 @@ refreshRestaurants = function () {
 };
 
 handleUserInput = () => {
-  yelpAPI.deleteRestaurants()
+  
 
   const userCityInput = this.state.search
   const cityInput = {
@@ -80,6 +80,8 @@ handleUserInput = () => {
     alert("You must enter a city!");
     return;
   }
+
+  yelpAPI.deleteRestaurants()
 
   yelpAPI.searchRestaurants(cityInput).then(() => {
     this.refreshRestaurants()
