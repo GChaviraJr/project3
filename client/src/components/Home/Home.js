@@ -9,9 +9,6 @@ import { List } from '../List/index'
 import { yelpAPI } from '../../utils/yelpAPI'
 import axios from "axios"
 
-
-
-
 class Home extends Component {
   constructor(props) {
     super(props)

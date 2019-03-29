@@ -2,7 +2,7 @@ import React from "react";
 import "./Signin.css";
 let url = "https://login.uber.com/oauth/v2/authorize?" +
     "response_type=code&client_id=w8BiFEe_pvOo9cg6VFa-oxIs_lpyL_ll&scope=request" +
-    "%20profile%20history&redirect_uri=http://localhost:3000"
+    "%20profile%20history&redirect_uri=https://project3team2.herokuapp.com/"
 
 class Signin extends React.Component {
   constructor(props) {

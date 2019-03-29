@@ -12,8 +12,8 @@ function Yelp(props) {
         <Col size="md-8">
           <h3 className="font-italic black-80">{name}</h3>
           {name && <h5 className="font-italic black-80">{name}</h5>}
-        </Col>im stuck in the main room
-      </Row> 
+        </Col>
+      </Row>
       <Row>
         <Col size="md-6">
             <p className="font-italic small black-80">address: {address}</p>
