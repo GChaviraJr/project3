@@ -18,6 +18,7 @@
     "react-scripts": "2.1.5",
     "react-tilt": "^0.1.4",
     "redis": "^2.8.0",
+    "request": "^2.88.0",
     "tachyons": "^4.11.1",
     "yelp-fusion": "^2.2.1"
   },

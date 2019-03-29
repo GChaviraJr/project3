@@ -12,6 +12,7 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const auth = require('./controllers/authorization');
 const API = require('./controllers/yelpController')
+const uberRoutes = require("./routes/uberRoutes/uberRoutes")
 // const routes = require('./routes')
 
 // Define middleware here
@@ -22,7 +23,7 @@ app.use(bodyParser.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
+app.use(uberRoutes)
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://mongo/nightowl");
 
@@ -35,8 +36,6 @@ app.post('/api/restaurants', (req, res) => {API.clientSearch(req, res)})
 app.post("/api/selectedLocation", (req, res) => {API.postSelectedLocation(req, res)})
 app.delete("/api/selectedLocation", function(req, res) {API.deleteSelectedLocation(req, res)})
 app.delete("/api/restaurants/", function(req, res) {API.deleteRestaurant(req, res)})
-
-// app.use(routes)
 
 // Start the API server
 app.listen(PORT, function() {

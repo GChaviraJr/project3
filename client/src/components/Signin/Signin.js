@@ -1,5 +1,8 @@
 import React from "react";
 import "./Signin.css";
+let url = "https://login.uber.com/oauth/v2/authorize?" +
+    "response_type=code&client_id=w8BiFEe_pvOo9cg6VFa-oxIs_lpyL_ll&scope=request" +
+    "%20profile%20history&redirect_uri=http://localhost:3000"
 
 class Signin extends React.Component {
   constructor(props) {
@@ -76,12 +79,13 @@ class Signin extends React.Component {
               </div>
             </fieldset>
             <div className="">
-              <input
+              <a href={url}><input
                 onClick={this.onSubmitSignIn}
                 className="b ph3 pv2 input-reset ba b--black bg-lightest-blue grow pointer f6 dib"
                 type="submit"
                 value="Sign in"
               />
+              </a>
             </div>
             <div className="lh-copy mt3">
               <p

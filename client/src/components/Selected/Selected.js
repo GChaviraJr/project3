@@ -7,7 +7,7 @@ import { Row, Col } from "../Grid";
 
 function Selected({ key, id, onClick, name, address, longitude, latitude, isSelected, toggleSelected}) {
   return (
-    <Card>
+    <Card className="center">
         <ListItem onClick={{onClick}} className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
             <Row className="flex-wrap-reverse pa4 black-80">
                 <Col size="md-8">

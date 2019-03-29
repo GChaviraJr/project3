@@ -7,6 +7,10 @@ import Card from '../Card/Card'
 import { Col, Row } from '../Grid/index'
 import { List } from '../List/index'
 import { yelpAPI } from '../../utils/yelpAPI'
+import axios from "axios"
+
+
+
 
 class Home extends Component {
   constructor(props) {
@@ -48,8 +52,6 @@ onSelectedChange = (name, address, coordinates) => {
     isSelected: true,
     isSearching: false
   })
-  const currentSession = window.sessionStorage.setItem('homeState', this.state)
-  this.setState({currentSession})
 }
 
 
@@ -63,15 +65,9 @@ refreshRestaurants = function () {
     return data
   }).then(response => response.json())
       .then(data => {
-        console.log('This is data:', data)
-      // let dataChange = [data]
-    //   let $restaurants = data.map(function(restaurant) {
-    //     return restaurant
-    // })
-    this.setState({
-        restaurants: data
-      })
-      console.log('')
+        this.setState({
+          restaurants: data
+        })
   })
 };
 
@@ -107,15 +103,21 @@ toggleSearching = () => {
   }));
 }
 
+searchProducts = () => {
+    console.log("salkd")
+    axios.get("/api/uber/products").then(function(response) {
+      console.log(response)
+    })
+}
     render() {
       const { name } = this.props
       const { restaurants, isSelected, isSearching } = this.state
     return (
       <div>
         <div className='white f3'>
-          <h2>{`${name}, welcome to your home page`}</h2>
+          <h2>{`${ window.sessionStorage.getItem('user') || name }, welcome to your home page`}</h2>
         </div>
-        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">Where do we want to go?></div>
+        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">Where do we want to go?</div>
         <div className="mt3">
             <input type='text' name='yelp-search' className='b pa2 input-reset ba bg-black white w-60' onChange={this.onSearchChange} placeholder='bar, club...'></input>
             <br/>
@@ -128,9 +130,9 @@ toggleSearching = () => {
       <Search>
         <Row isSearching={isSearching} toggleSearching={this.toggleSearching}>
           <Col size='md-12'>
-            <Card  className="black-80" title='Searched Restaurants'>
+            <Card title='Searched Restaurants'>
               {restaurants.length ? (
-                <List >
+                <List>
                   {restaurants.map(restaurant => (
                     <Yelp 
                       key={restaurant._id}
@@ -144,7 +146,7 @@ toggleSearching = () => {
                   ))}
                 </List>
               ) : (
-                <h3 className='text-center black-80'>No Searched Restaurants</h3>
+                <h3>No Searched Restaurants</h3>
               )}
             </Card>
           </Col>
@@ -164,8 +166,8 @@ toggleSearching = () => {
         longitude={this.state.longitude}
         latitude={this.state.latitude}
         />
-        <div className="white br3 ba b--white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">If you need a ride, use Uber!</div>
-        <button>Uber Button</button>
+        <div >If you need a ride, use Uber!</div>
+        <button onClick={this.searchProducts}>Uber Button</button>
       </Select>
       }
       </div>

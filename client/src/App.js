@@ -8,6 +8,7 @@ import Profile from '../src/components/Profile/Profile';
 import Modal from '../src/components/Portals/Modal/Modal';
 import './App.css'
 
+
 const particlesOptions = {
   particles: {
     number: {
@@ -21,7 +22,7 @@ const particlesOptions = {
 }
 
 const currentRoute = window.sessionStorage.getItem('route')
-const currentUser = window.sessionStorage.getItem('user')
+const currentUser = window.sessionStorage.getItem('superState')
 
 const initialState = {
   input: '',
@@ -104,7 +105,8 @@ class App extends Component {
     } else if (route === 'home') {
       this.setState({isSignedIn: true })
       window.sessionStorage.setItem('route', this.state.route)
-      window.sessionStorage.setItem('user', this.state)
+      window.sessionStorage.setItem('superState', this.state)
+      window.sessionStorage.setItem('user', this.state.user.name)
     }
     this.setState({route: route});
     window.sessionStorage.setItem('route', this.state.route)
@@ -116,10 +118,18 @@ class App extends Component {
       isProfileOpen: !state.isProfileOpen,
       
     }));
+    if (this.isProfileOpen) {
+      this.setState({
+        isSelected: false,
+        isSearching: false
+      })
+    } else {
+      return
+    }
   }
 
   render() {
-    const { isSignedIn, route, isProfileOpen, user } = this.state;
+    const { isSelected, isSearching, isSignedIn, route, isProfileOpen, user } = this.state;
     return (
       <div className="App">
         <Particles className='particles'
@@ -129,7 +139,7 @@ class App extends Component {
         {
           isProfileOpen && 
           <Modal>
-            <Profile isProfileOpen={isProfileOpen} toggleModal={this.toggleModal} user={user} loadUser={this.loadUser} />
+            <Profile isSelected={isSelected} isSearching={isSearching} isProfileOpen={isProfileOpen} toggleModal={this.toggleModal} user={user} loadUser={this.loadUser} />
           </Modal>
         }
         { route === 'home'
