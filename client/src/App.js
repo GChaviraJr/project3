@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import Navigation from '../src/components/Navigation/Navigation'
-import Signin from '../src/components/Signin/Signin';
-import Register from '../src/components/Register/Register';
-import Home from '../src/components/Home/Home';
+import Signin from '../src/pages/Signin/Signin';
+import Register from '../src/pages/Register/Register';
+import Home from '../src/pages/Home/Home';
 import Profile from '../src/components/Profile/Profile';
 import Modal from '../src/components/Portals/Modal/Modal';
 import './App.css'
@@ -22,13 +22,13 @@ const particlesOptions = {
 }
 
 const currentRoute = window.sessionStorage.getItem('route')
-const currentUser = window.sessionStorage.getItem('superState')
+
 
 const initialState = {
   input: '',
   route: currentRoute || 'signin',
   isProfileOpen: false,
-  isSignedIn: currentUser || false,
+  isSignedIn: false,
   user: {
     id: '',
     name: '',
@@ -37,7 +37,7 @@ const initialState = {
     joined: '',
     age: 0,
     pet: ''
-  } || currentUser.user
+  } 
 }
 
 
@@ -105,7 +105,6 @@ class App extends Component {
     } else if (route === 'home') {
       this.setState({isSignedIn: true })
       window.sessionStorage.setItem('route', this.state.route)
-      window.sessionStorage.setItem('superState', this.state)
       window.sessionStorage.setItem('user', this.state.user.name)
     }
     this.setState({route: route});
@@ -126,6 +125,10 @@ class App extends Component {
     } else {
       return
     }
+  }
+
+  componentWillUnmount() {
+    
   }
 
   render() {

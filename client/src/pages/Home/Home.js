@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Search from '../Portals/Search/Search'
-import Select from '../Portals/Select/Select'
-import Selected from '../Selected/Selected'
-import Yelp from '../Yelp/Yelp'
-import Card from '../Card/Card'
-import { Col, Row } from '../Grid/index'
-import { List } from '../List/index'
+import Search from '../../components/Portals/Search/Search'
+import Select from '../../components/Portals/Select/Select'
+import Selected from '../../components/Selected/Selected'
+import Yelp from '../../components/Yelp/Yelp'
+import Card from '../../components/Card/Card'
+import { Col, Row } from '../../components/Grid/index'
+import { List } from '../../components/List/index'
 import { yelpAPI } from '../../utils/yelpAPI'
 import axios from "axios"
 
