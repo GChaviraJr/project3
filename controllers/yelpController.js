@@ -63,10 +63,10 @@ module.exports = {
 
     deleteRestaurant: function(req, res) { 
       db.Results.deleteMany({
-        name: req.body,
-        address: req.body,
-        coordinates: req.body,
-        URL: req.body
+        name: req.body.name,
+        address: req.body.address,
+        coordinates: req.body.coordinates,
+        URL: req.body.url
       }).then(function() {
         console.log("all rows deleted");
       });

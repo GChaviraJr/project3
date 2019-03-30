@@ -7,7 +7,7 @@ import Card from '../../components/Card/Card'
 import { Col, Row } from '../../components/Grid/index'
 import { List } from '../../components/List/index'
 import { yelpAPI } from '../../utils/yelpAPI'
-import axios from "axios"
+import Uber from "../uber/Uber"
 
 class Home extends Component {
   constructor(props) {
@@ -29,6 +29,11 @@ onSearchChange = event => {
   this.setState({
     search: event.target.value,
   })
+}
+
+componentDidMount() {
+  yelpAPI.deleteRestaurantsInCurrentDatabase()
+  this.getCode()
 }
 
 onSelectedChange = (name, address, coordinates) => {
@@ -81,7 +86,6 @@ handleUserInput = () => {
     return;
   }
 
-  yelpAPI.deleteRestaurants()
 
   yelpAPI.searchRestaurants(cityInput).then(() => {
     this.refreshRestaurants()
@@ -100,18 +104,6 @@ toggleSearching = () => {
     ...state,
     isSearching: state.isSearching,
   }));
-}
-
-searchProducts = () => {
-    console.log("sad")
-    axios.get("/api/uber/products").then(function(response) {
-      console.log(response)
-    })
-}
-
-getCode = (callback) => {
-  let url = window.location
-  callback(url.search.split("=")[1])
 }
 
     render() {
@@ -173,7 +165,8 @@ getCode = (callback) => {
         searchProducts={this.searchProducts}
         />
       </Select>
-      }
+      }<br />
+      <Uber />
       </div>
       )
     }
