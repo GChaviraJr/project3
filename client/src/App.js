@@ -72,6 +72,9 @@ class App extends Component {
               if (user && user.email) {
                 this.loadUser(user)
                 this.onRouteChange('home');
+                this.setState({
+                  route: 'home'
+                })
               }
             })
           }
